@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Works Portfolio</title>
+<meta name="description" content="tailofyukki-cell の GitHub リポジトリ作品集">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1d1d22; --muted:#6b6b75; --line:#e4e1d8;
+  --accent:#d9472b; --accent-soft:#fbe9e4; --chip:#f0eee8;
+  --c-game:#d9472b; --c-tool:#2b6fd9; --c-audio:#8a3fd1; --c-strat:#1f8a5b; --c-web:#c78a12;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141418; --surface:#1d1d23; --ink:#ecebe6; --muted:#9d9ca6; --line:#2e2e36;
+    --accent:#ff6a4d; --accent-soft:#3a2420; --chip:#2a2a31;
+    --c-game:#ff6a4d; --c-tool:#5c9bff; --c-audio:#b57cff; --c-strat:#3fc48a; --c-web:#f0b23a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141418; --surface:#1d1d23; --ink:#ecebe6; --muted:#9d9ca6; --line:#2e2e36;
+  --accent:#ff6a4d; --accent-soft:#3a2420; --chip:#2a2a31;
+  --c-game:#ff6a4d; --c-tool:#5c9bff; --c-audio:#b57cff; --c-strat:#3fc48a; --c-web:#f0b23a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header.hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);letter-spacing:.08em}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.1;margin:10px 0 18px;font-weight:900;letter-spacing:-.01em}
+.lead{max-width:720px;color:var(--muted);font-size:16px;margin:0}
+.stats{display:flex;flex-wrap:wrap;gap:32px;margin-top:32px}
+.stat b{display:block;font-size:34px;font-weight:900;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+section.featured{padding:48px 0 8px}
+h2{font-size:22px;margin:0 0 20px;font-weight:900;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:10px;height:10px;background:var(--accent);border-radius:2px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.feat{background:var(--ink);color:var(--bg);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.feat .tag{font-family:"JetBrains Mono",monospace;font-size:12px;opacity:.7}
+.feat h3{margin:0;font-size:20px}
+.feat p{margin:0;font-size:14px;opacity:.85}
+.toolbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);padding:14px 0;border-bottom:1px solid var(--line);margin-top:40px}
+.toolbar .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filter{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.filter[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{margin-left:auto;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;font:inherit;font-size:13px;min-width:200px}
+main{padding:28px 0 80px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cat)}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.cat{color:var(--cat);font-weight:500}
+.card h3{margin:0;font-size:19px;line-height:1.35}
+.card h3 small{display:block;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);font-weight:500;margin-top:4px}
+.card p{margin:0;font-size:14px}
+.card ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--muted)}
+.card ul li{margin:2px 0}
+.tech{display:flex;flex-wrap:wrap;gap:6px}
+.tech span{background:var(--chip);font-size:12px;padding:2px 9px;border-radius:6px}
+.links{display:flex;gap:10px;margin-top:auto;padding-top:6px}
+.links a{font-size:13px;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid var(--line);font-weight:500}
+.links a.play{background:var(--accent);border-color:var(--accent);color:#fff}
+.links a:hover{opacity:.85}
+.shot{order:-1;margin:-22px -22px 4px;aspect-ratio:16/10;background:var(--chip);overflow:hidden;cursor:zoom-in;position:relative;border:0;padding:0;display:block;width:calc(100% + 44px)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .4s}
+.shot:hover img{transform:scale(1.03)}
+.shot .n{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;padding:2px 8px;border-radius:6px;font-family:"JetBrains Mono",monospace}
+.feat{position:relative;overflow:hidden}
+.feat img{width:calc(100% + 44px);margin:-22px -22px 6px;aspect-ratio:16/9;object-fit:cover;object-position:top}
+.lb{position:fixed;inset:0;background:rgba(10,10,14,.92);z-index:50;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:16px}
+.lb.on{display:flex}
+.lb img{max-width:min(1200px,100%);max-height:78vh;border-radius:8px}
+.lb .cap{color:#eee;font-size:14px}
+.lb button{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;font-size:26px;width:48px;height:48px;border-radius:50%;cursor:pointer}
+.lb .x{top:16px;right:16px}.lb .pv{left:16px;top:50%}.lb .nx{right:16px;top:50%}
+.empty{color:var(--muted);text-align:center;padding:40px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.search{margin-left:0;width:100%}header.hero{padding-top:48px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">// GITHUB PORTFOLIO — tailofyukki-cell</div>
+    <h1>つくったもの、<br>ぜんぶ並べました。</h1>
+    <p class="lead">ブラウザゲームからWindows向けデスクトップアプリ、音楽制作ツール、業務自動化ツールまで。「100日チャレンジ」を中心に、企画・設計・実装・公開まで一人で手がけた作品群です。各カードから実際に遊べるデモやソースコードをご覧いただけます。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<section class="featured">
+  <div class="wrap">
+    <h2>注目の作品</h2>
+    <div class="feat-grid">
+      <div class="feat"><img src="shots/auto-beat-5_1.webp" alt="オトアソビのプレイ画面"><span class="tag">Python · 音楽解析</span><h3>オトアソビ (AutoBeat 5)</h3><p>手持ちの楽曲を解析し、周波数帯とリズム強度から5レーン譜面を自動生成する音楽ゲーム。販売版ビルドまで整備。</p></div>
+      <div class="feat"><img src="shots/hex-wars_1.webp" alt="HEX WARSの戦闘画面"><span class="tag">C11 · SDL2</span><h3>HEX WARS</h3><p>大戦略ライクなヘクス型ターン制ウォーシミュレーション。データ駆動でユニット・地形・音源を差し替え可能。</p></div>
+      <div class="feat"><img src="shots/tactical-rpg-prototype_1.webp" alt="Gridbound Tacticsのマップ"><span class="tag">JavaScript · Blender</span><h3>Gridbound Tactics</h3><p>仲間が加わり9マップを攻略するタクティカルRPG。Blenderで制作した3Dマップ・キャラクターを使用。</p></div>
+      <div class="feat"><img src="shots/space-invaders-game_1.webp" alt="月影防衛線のタイトル画面"><span class="tag">JavaScript · Canvas</span><h3>月影防衛線</h3><p>ネオン和風サイバーSFのアーケードSTG。3ステージ・3ボス、難易度別ハイスコア、モバイル操作まで作り込み。</p></div>
+    </div>
+  </div>
+</section>
+
+<nav class="toolbar" aria-label="フィルター">
+  <div class="wrap" id="filters">
+    <input class="search" id="q" type="search" placeholder="キーワードで検索…" aria-label="検索">
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>該当する作品がありません。</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">GitHub: <a href="https://github.com/tailofyukki-cell?tab=repositories">github.com/tailofyukki-cell</a> ・ 掲載 35 リポジトリ（2026年10月時点）</div>
+</footer>
+
+<script>
+const GH="https://github.com/tailofyukki-cell/", PG="https://tailofyukki-cell.github.io/";
+const CATS={game:"ブラウザゲーム",strat:"RPG・戦略",audio:"音楽・メディア",tool:"ツール・自動化",web:"Web制作・アプリ"};
+// [repo, title, cat, lang, summary, points[], tech[], pages?]
+const R=[
+["auto-beat-5","オトアソビ (AutoBeat 5)","audio","Python","選んだ音楽ファイルを解析し、5レーンの縦スクロール譜面を自動生成して遊べるWindows向け音楽ゲーム。",["onset・周波数帯・リズム強度・持続区間を組み合わせた譜面生成","低音はD/F、高音はJ/K、強拍はSpaceへ振り分け","販売用ZIP・ユーザーガイドPDFを含むリリースビルドを整備"],["Python","音声解析","PyInstaller"]],
+["mixer4track","Mixer4Track","audio","Python","最大16トラックの音源を読み込み、バランスを調整しながら再生・書き出しできるWindows向けミキサー。",["8トラック×2バンク切替のミキサーUI、パン・ミュート・ソロ","MASTERメーター、クリッピング検知、WAV書き出し","プロジェクト保存、プリセットエフェクト、オートメーション（Phase 27）"],["Python","PyQt5","オーディオDSP"]],
+["mpc-sampler","MPC Sampler","audio","Python","MPC風の16パッド型サンプラー。wav/mp3を割り当て、キーボードやマウスで演奏できます。",["同時発音・連打に対応","パッド別音量＋マスター音量","割り当て設定の自動保存・復元"],["Python","Windows","オフライン"]],
+["audio_app","Music Visualizer with Equalizer","audio","Kotlin","端末内の音楽を再生し、音に連動するビジュアライザーとイコライザーを備えたAndroidアプリ。",["バー・波形・円形・スペクトラムの4種ビジュアライザー","31Hz〜16kHzの10バンドイコライザー","MP3/AAC/WAV/FLACなど主要形式に対応"],["Kotlin","Jetpack Compose","Android"]],
+["slideshow-maker","SlideshowMaker","audio","Python","音声と画像/動画をファイル名で自動ペアリングし、1本のMP4動画を生成するデスクトップアプリ。",["連番画像とTiming JSONで画像切替を制御","テロップ、BGMミックス、ラウドネス正規化","波形・スペクトログラム等のビジュアライザー、GUI/CLI両対応"],["Python","FFmpeg","GUI / CLI"]],
+["hex-wars","HEX WARS","strat","C","陸・海・空ユニットで都市を占領し、敵首都の制圧を目指す大戦略ライクのターン制ウォーシミュレーション。",["架空WW2風の2大国による大陸戦争","データ駆動でユニット・地形・音源・文言を差し替え可能","詳細な仕様書を作成し、Claude Codeと併用して開発"],["C11","SDL2","Windows / Linux"]],
+["tactical-rpg-prototype","Gridbound Tactics","strat","JavaScript","Windows向け2DタクティカルRPGの戦闘プロトタイプ。物語進行で仲間が加わり、9マップを攻略します。",["3人→最大5人の仲間加入システム","特徴の異なる9マップと戦闘カットイン","画像素材差し替えガイドなど設計ドキュメントを整備"],["JavaScript","Node.js","データ駆動"]],
+["legend-of-astra","Legend of Astra 〜星の伝説〜","strat","TypeScript","コマンド選択式ターン制バトルのJRPGをブラウザで。フィールド・村・ダンジョンを巡り闇の王を倒します。",["フィールド探索、村人との会話、宿屋・道具屋","ダンジョン攻略とボス戦","世界観・シナリオ・素材すべてオリジナル"],["TypeScript","Canvas","GitHub Pages"],1],
+["naval-strategy-game","蒼海の覇者","strat","JavaScript","艦隊を率いて海域の港を奪い合う、ターン制の海軍戦略シミュレーション。",["30ターン以内に港4つ確保などの勝利条件","艦種ごとのHP・攻撃・燃料・鋼材コスト","Canvasによるマップ描画"],["JavaScript","Canvas"],1],
+["nihon-daichi-game","日本列島大地主ゲーム","strat","JavaScript","47都道府県を舞台に、土地取得・通行料・建物投資で資産を競う2〜4人対戦のすごろくゲーム。",["地域独占で家〜ホテルまで建設","給料日マス・旅カードなど多彩なイベント","1台の端末で順番に遊べるローカル対戦"],["JavaScript","HTML/CSS"],1],
+["space-shooter","Danmaku Engine Demo","game","JavaScript","同人弾幕STGを継続制作・販売するためのデータ駆動ゲーム基盤と技術デモ。",["敵配置・弾幕・ステージ・文言をJSONで定義","低速移動・ボム・グレイズ・ゲームパッド対応","Electronでインストーラー/ポータブル/AppImage配布"],["JavaScript","Canvas","Electron"],1],
+["space-invaders-game","月影防衛線 — KAGEKIRI PROTOCOL","game","JavaScript","ネオン和風サイバーSFのアーケードシューティング。妖怪型ドローンから月都の結界を守ります。",["3ステージ・9ウェーブ・3ボス、ボス覚醒フェーズ","コンボ、難易度別ハイスコア、モバイル操作UI","開発設計書・テスト結果を公開"],["JavaScript","Canvas","Web Audio"],1],
+["star-blaster","STAR BLASTER","game","JavaScript","60秒生き残るかボスを倒せばクリアの、縦スクロール2Dシューティング。",["ショット強化・シールド・回復のパワーアップ","PCはキーボード、スマホはドラッグ操作"],["JavaScript","Canvas"],1],
+["endless-runner-game","Sky Sprint","game","JavaScript","棒人間ランナーをジャンプで操作し、障害物を避けて自己ベストを狙うエンドレスランナー。",["コイン・シールドなどのパワーアップ","3段階の難易度とポーズ・設定画面","外部ライブラリ・広告・トラッキングなし"],["JavaScript","Canvas"],1],
+["taiko-beat","Taiko Beat","game","TypeScript","ドン/カッの2打で遊ぶオリジナル太鼓系リズムゲーム。",["AudioContext＋performance.nowで高精度同期","PERFECT ±45ms などの判定設計","オリジナル楽曲・譜面、3段階難易度"],["TypeScript","Web Audio API"],1],
+["typerush","TypeRush","game","JavaScript","英文・単語・日本語（ローマ字）の3モードで練習できるタイピングアプリ。",["難易度×制限時間を選択","WPMと正確率を計測して結果表示"],["JavaScript","HTML/CSS"],1],
+["quiz-king","クイズ王","game","TypeScript","ゲームショー風の演出で楽しむ4択の一般教養クイズ。",["難易度・問題数を選択、解説付き","正答率でS〜Dのランク判定","JSONで問題を簡単に追加可能"],["TypeScript","CSS Animation"],1],
+["blackjack-game","Blackjack — Cyberpunk Casino","game","TypeScript","サイバーパンク・ネオンノワールなカジノで遊ぶブラックジャック。",["S17ルール、Aの1/11自動判定","ネオン調のUIデザイン"],["React 19","TypeScript","Tailwind CSS"],1],
+["klondike-solitaire","Klondike Solitaire","game","JavaScript","クラシックなソリティア（クロンダイク）をブラウザで。",["ドラッグ&ドロップ操作","1枚/3枚めくりの切替"],["JavaScript","HTML/CSS"],1],
+["minesweeper-game","マインスイーパー","game","JavaScript","3段階難易度で遊べるクラシックなマインスイーパー。",["初手セーフ保証、連鎖オープン","スマホは長押し・旗モードで操作"],["JavaScript","レスポンシブ"],1],
+["sudoku-game","数独 / Sudoku","game","TypeScript","和モダンなデザインで遊ぶナンプレ。毎回ランダムに盤面を生成します。",["バックトラッキングで生成し、解の一意性を検証","ヒント・Undo・メモ機能"],["React","TypeScript","Tailwind CSS"],1],
+["triple-tile-game","TRIPLE TILE","game","TypeScript","重なったタイルをトレイに集め、同じ絵柄3枚で消す3マッチパズル。",["重なり判定による選択制限","7枠トレイの詰み判定とステージ構成"],["TypeScript","React"],1],
+["screw-puzzle-game","ネジ外しゲーム","game","JavaScript","重なり合う木製プレートのネジを正しい順番で外していくパズル。",["無限ステージ自動生成＋詰みなし保証","ヒント・ドリルなど4種のサポートアイテム","BGM/SE、PC・スマホ対応"],["JavaScript","Canvas"],1],
+["block-breaker-game","ブロック崩し","game","JavaScript","パドルでボールを跳ね返してブロックを壊すシンプルなアクション。",["マウス・キーボード・タッチ操作に対応","スコアと残機システム"],["JavaScript","Canvas"],1],
+["ring-toss-festival","わなげ祭り！","game","JavaScript","ドラッグで方向と強さを決めて、動く的を狙うお祭り風輪投げ。",["引っ張り操作による物理的な投てき","的のサイズと速さで得点が変化"],["JavaScript","Canvas"],1],
+["shooting-game","射的ゲーム - お祭り屋台","game","JavaScript","屋台の景品を10発で撃ち抜く、お祭り風の射的ゲーム。",["小さい景品ほど高得点","命中時のパーティクル・効果音演出"],["JavaScript","HTML/CSS"],1],
+["pk-battle","PK Battle","game","JavaScript","ゴールの9エリアを選んで蹴り合う、ペナルティキック5本勝負。",["難易度選択","キッカー/キーパーの攻防"],["JavaScript","HTML/CSS"],1],
+["local-rpa-tool","LocalRPA","tool","Python","画像マッチングに特化した、完全オフラインのWindows向けRPAツール。",["OpenCVによる画像検索・出現待ち・クリック","マウス/キーボード操作、変数と条件分岐","インストール不要の単体.exe、外部通信なし"],["Python","OpenCV","PyInstaller"]],
+["local-automator-tool","Local Automator","tool","Python","Power Automateのように GUI でフローを組んで実行できるローカル自動化ツール。",["ドラッグ&ドロップのフロービルダー","ファイル操作・コマンド実行・条件分岐","実行ログ保存、テレメトリなし"],["Python","GUI","Windows"]],
+["soccer-tactics-board","サッカー戦術ボード","tool","JavaScript","戦術解説や試合分析の図解に使えるブラウザアプリ。外部ライブラリ不使用。",["フォーメーション選択、選手・ボールのドラッグ","矢印・スペース円・フリーハンド描画","シーン式アニメーションとWebM動画出力"],["JavaScript","Canvas","MediaRecorder"],1],
+["novel-engine-template","NovelEngine テンプレート","tool","HTML","画像とJSONを差し替えるだけで一本道ノベルゲームを作れるテンプレート。",["オート・スキップ・バックログ・セーブ/ロード","Windows用.exeとして配布可能"],["Python","PyQt5","pygame"]],
+["daily-goal-tracker","今日の前進ログ","web","JavaScript","「できたこと」を主役にする、やさしい目標トラッカー。",["できた/ちょっとできた/また今度の3択","予定外の成果も記録できる","プレッシャーを与えない配色設計"],["JavaScript","LocalStorage"],1],
+["isekai-job-diagnosis","異世界転生職業診断","web","HTML","50問から10問をランダム出題し、異世界での職業を診断するアプリ。",["結果の偏りを抑える配点調整","オリジナルキャラクター画像","X（Twitter）シェア機能"],["HTML/CSS","JavaScript"],1],
+["bar_eight_website","BAR Eight ウェブサイト","web","TypeScript","バーの店舗サイト。メニュー、スタッフ紹介、イベント、アクセスなどを掲載。",["複数ページ構成とナビゲーション","Googleマップ埋め込み、レスポンシブ対応"],["TypeScript","Vite","React"]],
+["programming_lp_sample","プログラミング講座 LP","web","HTML","社会人向けプログラミング副業講座のランディングページ制作サンプル。",["学習フロー図・カリキュラムマップなどの図解","スクロールアニメーション、FAQアコーディオン","WordPress移植を想定した構成、SEO対応"],["HTML","CSS","JavaScript"],1]
+];
+const S={"auto-beat-5":3,"hex-wars":3,"minesweeper-game":2,"mpc-sampler":2,"tactical-rpg-prototype":2,"space-invaders-game":2};
+["blackjack-game","block-breaker-game","daily-goal-tracker","endless-runner-game","isekai-job-diagnosis","klondike-solitaire","legend-of-astra","naval-strategy-game","nihon-daichi-game","pk-battle","programming_lp_sample","quiz-king","ring-toss-festival","screw-puzzle-game","shooting-game","soccer-tactics-board","space-shooter","star-blaster","sudoku-game","taiko-beat","triple-tile-game","typerush"].forEach(r=>S[r]=1);
+for(const r in S)S[r]=Array.from({length:S[r]},(_,i)=>`${r}_${i+1}.webp`);
+const lb=document.createElement("div");lb.className="lb";lb.innerHTML='<button class="x" aria-label="閉じる">×</button><button class="pv" aria-label="前へ">‹</button><img alt=""><div class="cap"></div><button class="nx" aria-label="次へ">›</button>';document.body.appendChild(lb);
+let lr,li=0;const show=()=>{const a=S[lr];lb.querySelector("img").src="shots/"+a[li];lb.querySelector(".cap").textContent=`${R.find(x=>x[0]===lr)[1]}  (${li+1}/${a.length})`;lb.querySelectorAll(".pv,.nx").forEach(b=>b.style.display=a.length>1?"":"none")};
+const step=d=>{li=(li+d+S[lr].length)%S[lr].length;show()};
+lb.onclick=e=>{if(e.target===lb||e.target.classList.contains("x"))lb.classList.remove("on");if(e.target.classList.contains("pv"))step(-1);if(e.target.classList.contains("nx"))step(1)};
+document.addEventListener("keydown",e=>{if(!lb.classList.contains("on"))return;if(e.key==="Escape")lb.classList.remove("on");if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1)});
+document.getElementById("grid").addEventListener("click",e=>{const b=e.target.closest(".shot");if(!b)return;lr=b.dataset.r;li=0;show();lb.classList.add("on")});
+const order=["all","game","strat","audio","tool","web"];
+const f=document.getElementById("filters"), q=document.getElementById("q");
+let cur="all";
+order.forEach(k=>{const b=document.createElement("button");b.className="filter";b.textContent=k==="all"?`すべて (${R.length})`:`${CATS[k]} (${R.filter(r=>r[2]===k).length})`;b.dataset.k=k;b.setAttribute("aria-pressed",k===cur);b.onclick=()=>{cur=k;f.querySelectorAll(".filter").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===k));render()};f.insertBefore(b,q)});
+q.oninput=render;
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(){
+  const t=q.value.trim().toLowerCase();
+  const list=R.filter(r=>(cur==="all"||r[2]===cur)&&(!t||JSON.stringify(r).toLowerCase().includes(t)));
+  document.getElementById("grid").innerHTML=list.map(([repo,title,cat,lang,sum,pts,tech,pg])=>`
+  <article class="card" style="--cat:var(--c-${cat})">
+    ${S[repo]?`<button class="shot" data-r="${repo}" aria-label="${esc(title)} のスクリーンショットを拡大"><img src="shots/${S[repo][0]}" alt="${esc(title)} の画面" loading="lazy">${S[repo].length>1?`<span class="n">📷 ${S[repo].length}</span>`:""}</button>`:""}
+    <div class="meta"><span class="cat">${CATS[cat]}</span><span>${lang}</span></div>
+    <h3>${esc(title)}<small>${repo}</small></h3>
+    <p>${esc(sum)}</p>
+    <ul>${pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>
+    <div class="tech">${tech.map(x=>`<span>${esc(x)}</span>`).join("")}</div>
+    <div class="links">${pg?`<a class="play" href="${PG+repo}/" target="_blank" rel="noopener">▶ デモを見る</a>`:""}<a href="${GH+repo}" target="_blank" rel="noopener">GitHub</a></div>
+  </article>`).join("");
+  document.getElementById("empty").hidden=list.length>0;
+}
+const langs=new Set(R.map(r=>r[3]));
+document.getElementById("stats").innerHTML=[[R.length,"リポジトリ"],[R.filter(r=>r[7]).length,"公開デモ"],[langs.size,"使用言語"],[R.filter(r=>r[2]==="game"||r[2]==="strat").length,"ゲーム作品"]].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+render();
+</script>
+</body>
+</html>
