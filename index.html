@@ -163,7 +163,7 @@ const R=[
 ["bar_eight_website","BAR Eight ウェブサイト","web","TypeScript","バーの店舗サイト。メニュー、スタッフ紹介、イベント、アクセスなどを掲載。",["複数ページ構成とナビゲーション","Googleマップ埋め込み、レスポンシブ対応"],["TypeScript","Vite","React"]],
 ["programming_lp_sample","プログラミング講座 LP","web","HTML","社会人向けプログラミング副業講座のランディングページ制作サンプル。",["学習フロー図・カリキュラムマップなどの図解","スクロールアニメーション、FAQアコーディオン","WordPress移植を想定した構成、SEO対応"],["HTML","CSS","JavaScript"],1]
 ];
-const S={"auto-beat-5":3,"hex-wars":3,"minesweeper-game":2,"mpc-sampler":2,"tactical-rpg-prototype":2,"space-invaders-game":2};
+const S={"auto-beat-5":5,"mixer4track":1,"hex-wars":3,"minesweeper-game":2,"mpc-sampler":2,"tactical-rpg-prototype":2,"space-invaders-game":2};
 ["blackjack-game","block-breaker-game","daily-goal-tracker","endless-runner-game","isekai-job-diagnosis","klondike-solitaire","legend-of-astra","naval-strategy-game","nihon-daichi-game","pk-battle","programming_lp_sample","quiz-king","ring-toss-festival","screw-puzzle-game","shooting-game","soccer-tactics-board","space-shooter","star-blaster","sudoku-game","taiko-beat","triple-tile-game","typerush"].forEach(r=>S[r]=1);
 for(const r in S)S[r]=Array.from({length:S[r]},(_,i)=>`${r}_${i+1}.webp`);
 const lb=document.createElement("div");lb.className="lb";lb.innerHTML='<button class="x" aria-label="閉じる">×</button><button class="pv" aria-label="前へ">‹</button><img alt=""><div class="cap"></div><button class="nx" aria-label="次へ">›</button>';document.body.appendChild(lb);
